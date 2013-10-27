@@ -4,12 +4,10 @@
 http://jackrabbitsgroup.github.io/angular-forminput/
 
 ## Dependencies
-- required: NONE (except AngularJS of course - no jQuery, etc. or any other dependencies)
+- required:
+	- `lesshat`
+	- `less-flexbox`
 - optional
-	- `font-awesome` (for next and previous arrow icons - though you can use whatever you want)
-	- `less-flexbox` (for vertical centering the next and previous arrows)
-		- `lesshat`
-	- `angular-hammer` and `hammerjs` IF using hammer-swipe attribute for swiping to change the slide
 	- `angular-multiselect` if using the multiselect input type
 	- `angular-datetimepicker` if using the datetime input type
 See `bower.json` and `index.html` in the `gh-pages` branch for a full list / more details

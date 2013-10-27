@@ -1,6 +1,6 @@
 {
 	"name": "angular-forminput",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"authors": [
 		"Luke Madera <luke.madera@gmail.com>"
 	],
@@ -25,7 +25,9 @@
 		"angular":"~1.2.0",
 		"angular-animate":"~1.2.0",
 		"angular-sanitize":"~1.2.0",
-		"angular-touch":"~1.2.0"
+		"angular-touch":"~1.2.0",
+		"lesshat":"latest",
+		"less-flexbox":"latest"
 	},
 	"devDependencies": {
 	}
