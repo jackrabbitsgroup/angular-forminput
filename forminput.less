@@ -1,0 +1,169 @@
+/* jrg-forminput */
+
+.jrg-forminput input, .jrg-forminput select {
+	width:100%;
+}
+.jrg-forminput textarea {
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	/*margin: 5px 0;*/
+	/*border: solid 1px black;*/
+}
+//.jrg-forminput label {
+.jrg-forminput-cont {
+	text-align:left;
+}
+.jrg-forminput-validation {
+	padding-bottom:9px;
+}
+.jrg-forminput-input {
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+
+/*
+.jrg-forminput-input-container input {
+	padding: 5px 10px;
+	border:solid 1px black;
+}
+.jrg-forminput-multi-checkbox-item {
+	display:inline-block;
+	margin:0 5px;
+}
+.jrg-forminput-input-container-outer
+{
+	padding:5px 0;
+}
+.jrg-forminput-input-container-outer.static
+{
+	padding:0;
+}
+*/
+
+.jrg-forminput-input-checkbox-cont {
+	//text-align:right;
+}
+input[type="checkbox"].jrg-forminput-input-checkbox {
+	width:20px;
+}
+
+
+/* get button to layout / act like div element instead */
+.jrg-forminput-form button[type='submit'], .jrg-forminput-submit {
+	display:block;
+	width:100%;
+	font-size:inherit;
+	font-family:inherit;
+	margin-left: auto;
+	margin-right: auto;
+	/*
+	max-width:150px;
+	margin-top:8px;
+	*/
+}
+.jrg-forminput-submit {
+	margin-top:8px;
+	max-width:150px;
+}
+
+
+/* side by side label layout */
+@width-wide: 85;
+@width-wider: 115;
+@width-widest: 145;
+@input-margin-right: 10;
+//@input-extra-margin: 4;
+@input-extra-margin: 0;
+
+.jrg-forminput-form.wide .jrg-forminput, .jrg-forminput-form.wider .jrg-forminput, .jrg-forminput-form.widest .jrg-forminput
+{
+	.flexbox();
+	// corrects firefox
+	width: 100%;
+	.flex-direction(row);
+}
+/*
+.wide .jrg-forminput.styled-checkbox, .wider .jrg-forminput.styled-checkbox, .widest .jrg-forminput.styled-checkbox
+{
+	display:block;
+}
+*/
+
+.jrg-forminput-form.wide label, .jrg-forminput-form.wider label, .jrg-forminput-form.widest label
+{
+	margin-top:9px;
+	text-align:right;
+	margin-right:@input-margin-right*1px;
+}
+.jrg-forminput-form.wide label
+{
+	width:@width-wide*1px;
+}
+.jrg-forminput-form.wider label
+{
+	width:@width-wider*1px;
+}
+.jrg-forminput-form.widest label
+{
+	width:@width-widest*1px;
+}
+.jrg-forminput-form.wide .jrg-forminput-input, .jrg-forminput-form.wider .jrg-forminput-input, .jrg-forminput-form.widest .jrg-forminput-input
+{
+	/*float:left;*/
+	.flex(1);
+	/*
+	UPDATE: can NOT have left or right margin with width:100%; since box-sizing does NOT apply to margin (just to border and padding)
+	UPDATE2: actually it's still going outside the container on small widths BUT if use display:block; both these issues seem to be fixed.
+	margin:2px (@input-extra-margin*1px);		//give some spacing to reduce chances of input overflowing (i.e. for border-radius rounded corners)
+	margin:2px 0;		//give some spacing to reduce chances of input overflowing (i.e. for border-radius rounded corners) BUT ensure no left/right padding since that could lead to width:100%; inputs overflowing outside it's container!
+	*/
+	display:block;		//to ensure the input obeys sizing (flex box, box-sizing, etc.) and stays INSIDE it's container!
+}
+
+.jrg-forminput-form.wide button[type='submit'], .jrg-forminput-form.wide .jrg-forminput-submit, .jrg-forminput-form.wide .jrg-forminput-validation {
+	margin-left:(@width-wide+@input-margin-right+@input-extra-margin)*1px;
+	/*max-width:100%;*/
+}
+.jrg-forminput-form.wider button[type='submit'], .jrg-forminput-form.wider .jrg-forminput-submit, .jrg-forminput-form.wider .jrg-forminput-validation {
+	margin-left:(@width-wider+@input-margin-right+@input-extra-margin)*1px;
+	/*max-width:100%;*/
+}
+.jrg-forminput-form.widest button[type='submit'], .jrg-forminput-form.widest .jrg-forminput-submit, .jrg-forminput-form.widest .jrg-forminput-validation {
+	margin-left:(@width-widest+@input-margin-right+@input-extra-margin)*1px;
+	/*max-width:100%;*/
+}
+.jrg-forminput-form.wide .jrg-forminput-validation, .jrg-forminput-form.wider .jrg-forminput-validation, .jrg-forminput-form.widest .jrg-forminput-validation {
+	padding-top:2px;
+}
+
+
+/* columns */
+/*
+.jrg-forminput-cols-50, .jrg-forminput-cols-25, .jrg-forminput-cols-75 {
+	display:inline-block;
+	vertical-align:top;
+}
+.jrg-forminput-cols-50 {
+	width:47.5%;
+	margin:0 1%;
+}
+.jrg-forminput-cols-25 {
+	width:22.5%;
+	margin:0 1%;
+}
+.jrg-forminput-cols-75 {
+	width:72.5%;
+	margin:0 1%;
+}
+.jrg-forminput-cols-50:first-child, .jrg-forminput-cols-50.first, .jrg-forminput-cols-25:first-child, .jrg-forminput-cols-25.first, .jrg-forminput-cols-75:first-child, .jrg-forminput-cols-75.first {
+	margin-left:0%;
+	margin-right:2%;
+}
+.jrg-forminput-cols-50:last-child, .jrg-forminput-cols-50.last, .jrg-forminput-cols-25:last-child, .jrg-forminput-cols-25.last, .jrg-forminput-cols-75:last-child, .jrg-forminput-cols-75.last {
+	margin-left:2%;
+	margin-right:0%;
+}
+*/
+/* end: columns */

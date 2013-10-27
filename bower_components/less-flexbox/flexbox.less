@@ -1,0 +1,71 @@
+/*
+Uses flexbox mixin from https://github.com/ProLoser/Flexbox.less
+
+@usage
+//EXAMPLE 1 - row / horizontal
+<div class='flexbox row'>
+	<div>Left</div>
+	<div class='flex1'>Middle Flex</div>
+	<div>Right</div>
+</div>
+
+//EXAMPLE 2 - vertical center div
+<div class='flexbox center'>
+	<div>My centered item!</div>
+</div>
+
+*/
+/*** CONTAINER ***/
+.flexbox {
+	.flexbox();
+
+	width: 100%;		// corrects firefox
+	.box-sizing(border-box);
+	
+
+	/*** CONTAINER DIRECTIONS ***/
+	&.row {
+		.flex-direction(row);
+	}
+	&.row-reverse {
+		.flex-direction(row-reverse);
+	}
+	&.column {
+		.flex-direction(column);
+	}
+	&.column-reverse {
+		.flex-direction(column-reverse);
+	}
+	
+	/*** CENTER ***/
+	&.center {
+		.center();
+	}
+
+	/*** CELLS ***/
+	.order0 {
+		.order(0);
+	}
+	.order1 {
+		.order(1);
+	}
+	.order2 {
+		.order(2);
+	}
+	.order3 {
+		.order(3);
+	}
+
+	.flex0 {
+		.flex(0);
+	}
+	.flex1 {
+		.flex(1);
+	}
+	.flex2 {
+		.flex(2);
+	}
+	.flex3 {
+		.flex(3);
+	}
+}

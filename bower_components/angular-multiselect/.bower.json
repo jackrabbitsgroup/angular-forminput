@@ -1,0 +1,42 @@
+{
+  "name": "angular-multiselect",
+  "version": "1.0.0",
+  "authors": [
+    "Luke Madera <luke.madera@gmail.com>"
+  ],
+  "description": "AngularJS LIGHTWEIGHT (no jQuery or dependencies!) multi select input",
+  "keywords": [
+    "angular",
+    "AngularJS",
+    "select",
+    "multiselect",
+    "angular-multiselect",
+    "input",
+    "form"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.0",
+    "angular-animate": "~1.2.0",
+    "angular-sanitize": "~1.2.0",
+    "angular-touch": "~1.2.0"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/jackrabbitsgroup/angular-multiselect",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "ca1e124c99af6a6bc60c3403fef36dcc4251ad57"
+  },
+  "_source": "git://github.com/jackrabbitsgroup/angular-multiselect.git",
+  "_target": "*",
+  "_originalSource": "angular-multiselect"
+}

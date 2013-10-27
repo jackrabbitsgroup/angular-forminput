@@ -1,0 +1,34 @@
+<div ng-controller='HomeCtrl'>
+	<form class='jrg-forminput-form wider' name='signupForm' ng-submit='submitForm()'>
+		<div jrg-forminput placeholder='First Name' ng-model='formVals.first_name' opts='opts'></div>
+		<div jrg-forminput type='text' placeholder='Last Name' ng-model='formVals.last_name' opts=''></div>
+		<div jrg-forminput type='email' placeholder='Email' ng-model='formVals.email' opts='' required></div>
+		<div jrg-forminput type='password' placeholder='Password' ng-model='formVals.password' opts='' required ng-minlength='6'></div>
+		
+		<div jrg-forminput type='tel' placeholder='Phone Number' ng-model='formVals.phone' opts='optsPhone' ng-minlength='10' ng-pattern='/^[0-9]+$/'></div>
+		<div jrg-forminput type='number' placeholder='Zip Code' ng-model='formVals.zip_code' opts='' ng-minlength='5' ng-maxlength='5'></div>
+		<div jrg-forminput type='url' placeholder='Website URL' ng-model='formVals.url' opts=''></div>
+		
+		<div jrg-forminput type='textarea' placeholder='Short Bio' ng-model='formVals.bio' opts=''></div>
+		
+		<div jrg-forminput type='select' placeholder='Gender' ng-model='formVals.gender' select-opts='selectOptsGender' opts=''></div>
+		
+		<div jrg-forminput type='checkbox' label='Terms' ng-model='formVals.terms' ng-true-value='yes' ng-false-value='off' opts=''></div>
+		
+		<br />Requires angular-multiselect<br />
+		<div jrg-forminput type='multi-select' placeholder='Interests' ng-model='formVals.interests' select-opts='selectOptsInterests' opts=''></div>
+		
+		<br />Requires angular-datetimepicker<br />
+		<div jrg-forminput type='datetime' placeholder='Date/Time' ng-model='formVals.datetime' opts=''></div>
+		<div jrg-forminput type='date' placeholder='Date Only' ng-model='formVals.date' opts=''></div>
+		
+		<button class='btn btn-primary jrg-forminput-submit' type='submit' >Submit</button>
+	</form>
+	
+	<br />
+	form.$valid: {{signupForm.$valid}}
+	form.$invalid: {{signupForm.$invalid}}
+	<br />
+	Values:
+	<div ng-repeat='(key, val) in formVals'>{{key}}: {{val}}</div>
+</div>

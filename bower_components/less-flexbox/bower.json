@@ -1,0 +1,24 @@
+{
+	"name": "less-flexbox",
+	"version": "1.0.1",
+	"authors": [
+		"Luke Madera <luke.madera@gmail.com>"
+	],
+	"description": "Flexbox LESS mixins and classes for cross browser compatibility",
+	"keywords": [
+		"less",
+		"flexbox"
+	],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {
+	},
+	"devDependencies": {
+	}
+}
