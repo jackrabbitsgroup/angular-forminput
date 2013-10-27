@@ -1,5 +1,12 @@
 <div ng-controller='HomeCtrl'>
-	<form class='jrg-forminput-form wider' name='signupForm' ng-submit='submitForm()'>
+	<h3>Responsive, consistently styled, fast to build form!</h3>
+	Try resizing the width of your browser window!
+	<br /><br />
+	<div ng-if='formWideClass ==""'>Mobile / small version - default / no form class</div>
+	<div ng-if='formWideClass =="wider"'>Regular / larger version - form class: <b>{{formWideClass}}</b></div>
+	<br />
+	
+	<form class='jrg-forminput-form {{formWideClass}}' name='signupForm' ng-submit='submitForm()'>
 		<div jrg-forminput placeholder='First Name' ng-model='formVals.first_name' opts='opts'></div>
 		<div jrg-forminput type='text' placeholder='Last Name' ng-model='formVals.last_name' opts=''></div>
 		<div jrg-forminput type='email' placeholder='Email' ng-model='formVals.email' opts='' required></div>
