@@ -1,5 +1,7 @@
 # AngularJS Form Input Builder Directive
 
+Provides consistent, responsive styling and validation for forms/inputs. Build a form quickly with 1 line per input in your HTML rather than copy/paste for a label, input, validation, and styling for each input control.
+
 ## Demo
 http://jackrabbitsgroup.github.io/angular-forminput/
 
@@ -8,8 +10,9 @@ http://jackrabbitsgroup.github.io/angular-forminput/
 	- `lesshat`
 	- `less-flexbox`
 - optional
-	- `angular-multiselect` if using the multiselect input type
-	- `angular-datetimepicker` if using the datetime input type
+	- `angular-multiselect` if using the multi-select input type
+	- `angular-datetimepicker` if using the datetime or date input types
+
 See `bower.json` and `index.html` in the `gh-pages` branch for a full list / more details
 
 ## Install
