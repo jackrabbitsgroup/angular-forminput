@@ -37,7 +37,7 @@ datetime-local??, time?
 scope (attrs that must be defined on the scope (i.e. in the controller) - they can't just be defined in the partial html)
 	@param {String} ngModel Variable for storing the input's value
 	@param {Object} opts
-		@param {Function} [ngChange] Will be called AFTER the value is updated
+		@param {Function} [ngChange] Will be called AFTER the value is updated. NOT supported for date/datetime input types (use onchangeDatetime instead). NOTE: this will NOT fire if the value is invalid (will fire though after the value is valid).
 		@param {Object} [validationMessages] Key-value pairs of validation messages to display (i.e. {minlength: 'Too short!'} )
 	@param {Array} [selectOpts] REQUIRED for 'select' and 'multi-select' type. These are options for the <select>. Each item is an object of:
 		@param {String} val Value of this option. NOTE: this should be a STRING, not a number or int type variable. Values will be coerced to 'string' here but for performance and to ensure accurate display, pass these in as strings (i.e. 1 would become '1'). UPDATE: they may not actually have to be strings but this type coercion ensures the ngModel matches the options since 1 will not match '1' and then the select value won't be set properly. So basically types need to match so just keep everything in strings. Again, ngModel type coercion will be done here but it's best to be safe and just keep everything as strings.
@@ -50,7 +50,7 @@ scope (attrs that must be defined on the scope (i.e. in the controller) - they c
 		@param {String} date
 		@param {Object} params
 		@param {Function} callback Expects a return of {Boolean} true if valid, false otherwise. If false, the value will be set to blank.
-	@param {Function} [onchangeDatetime] DATE/DATETIME type only. Will be called everytime date changes. Will pass the following parameters:
+	@param {Function} [onchangeDatetime] DATE/DATETIME type only. Will be called everytime date changes. NOTE: this REPLACES opts.ngChange, which will NOT fire on date/datetime input types! Will pass the following parameters:
 		@param {String} date
 		@param {Object} params
 	@param {Function} ngClick Declared on scope so it will be "passed-through" appropriately; use as normal ng-click
@@ -214,14 +214,14 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			var uniqueName ="jrgFormInput"+attrs.type+Math.random().toString(36).substring(7);
 			var elementTag ='input';
 			if(attrs.type =='text' || attrs.type =='email' || attrs.type =='tel' || attrs.type =='number' || attrs.type =='url') {
-				html.input ="<input class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' type='"+attrs.type+"' placeholder='"+placeholder+"' "+customAttrs+" ";
+				html.input ="<input class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})' type='"+attrs.type+"' placeholder='"+placeholder+"' "+customAttrs+" ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
 				}
 				html.input+="/>";
 			}
 			else if(attrs.type =='password') {
-				html.input ="<input class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' type='password' placeholder='"+placeholder+"' "+customAttrs+" ";
+				html.input ="<input class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})' type='password' placeholder='"+placeholder+"' "+customAttrs+" ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
 				}
@@ -229,17 +229,17 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			}
 			else if(attrs.type =='textarea') {
 				elementTag ='textarea';
-				html.input ="<textarea class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' placeholder='"+placeholder+"' "+customAttrs+" ";
+				html.input ="<textarea class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})'  placeholder='"+placeholder+"' "+customAttrs+" ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
 				}
 				html.input+="></textarea>";
 			}
 			else if(attrs.type =='checkbox') {
-				// html.input ="<input class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' type='checkbox' placeholder='"+placeholder+"' "+customAttrs+" />";
+				// html.input ="<input class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})'  type='checkbox' placeholder='"+placeholder+"' "+customAttrs+" />";
 				//doesn't work - apparently can't set ng-true-value and ng-false-value via scope...
-				// html.input ="<div class='jrg-forminput-input jrg-forminput-input-checkbox-cont'><input class='jrg-forminput-input-checkbox' name='"+uniqueName+"' ng-model='ngModel' ng-true-value='{{checkboxVals.ngTrueValue}}' ng-false-value='{{checkboxVals.ngFalseValue}}' type='checkbox' placeholder='"+placeholder+"' "+customAttrs+" /></div>";
-				html.input ="<div class='jrg-forminput-input jrg-forminput-input-checkbox-cont'><input class='jrg-forminput-input-checkbox' name='"+uniqueName+"' ng-model='ngModel' type='checkbox' placeholder='"+placeholder+"' "+customAttrs+" ";
+				// html.input ="<div class='jrg-forminput-input jrg-forminput-input-checkbox-cont'><input class='jrg-forminput-input-checkbox' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})'  ng-true-value='{{checkboxVals.ngTrueValue}}' ng-false-value='{{checkboxVals.ngFalseValue}}' type='checkbox' placeholder='"+placeholder+"' "+customAttrs+" /></div>";
+				html.input ="<div class='jrg-forminput-input jrg-forminput-input-checkbox-cont'><input class='jrg-forminput-input-checkbox' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})' type='checkbox' placeholder='"+placeholder+"' "+customAttrs+" ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
 				}
@@ -259,6 +259,9 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
 				}
+				//add onchange / ng-change handling (multi-select directive uses 'on-change-evt' attr rather than ng-change)
+				attrs.onChangeEvt =uniqueName+'MultiSelectOnChange';
+				html.input +="on-change-evt='"+attrs.onChangeEvt+"' ";
 				html.input+="></div></div>";
 			}
 			else if(attrs.type =='date' || attrs.type =='datetime') {
@@ -403,6 +406,13 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 						$scope.opts.ngChange();
 					}, 50);
 				};
+				
+				//multiselect handling (uses attr event broadcast/emit instead)
+				if($attrs.onChangeEvt) {
+					$scope.$on($attrs.onChangeEvt, function(evt, params) {
+						$scope.opts.ngChange();
+					});
+				}
 			}
 			
 			//datetime set default opts
