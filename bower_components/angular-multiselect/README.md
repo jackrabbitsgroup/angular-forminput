@@ -3,13 +3,13 @@
 ## Why / When to use?
 Why not just use the popular `select2` or `chosen` and/or their angular wrapper equivalents?
 
-angular-multiselect has NO DEPENDENCIES - Including NO jQuery! Pure AngularJS!
+<b>angular-multiselect is tiny</b> since it has <b>NO DEPENDENCIES</b> - Including NO jQuery! It's pure javascript/AngularJS!
 
 Dependencies can have a large footprint and thus affect performance:
-	- jQuery 2.0.3 is 237kb, 82kb compressed
-	- chosen 1.0.0 is 40kb, 26kb compressed AND it requries jQuery (or Prototype) = <b>108kb</b> total
-	- select2 3.4.4 is 133kb, 60kb compressed AND it requires jQuery = <b>142kb</b> total
-	- angular-ui-select2 is only 7kb (uncompressed) by itself but requires select2 and jQuery = ~144kb total
+- jQuery 2.0.3 is 237kb, 82kb compressed
+- chosen 1.0.0 is 40kb, 26kb compressed AND it requries jQuery (or Prototype) = <b>108kb</b> total
+- select2 3.4.4 is 133kb, 60kb compressed AND it requires jQuery = <b>142kb</b> total
+- angular-ui-select2 is only 7kb (uncompressed) by itself but requires select2 and jQuery = ~144kb total
 	
 angular-multiselect is 34kb, <b>12kb</b> compressed in TOTAL (since there are no other dependencies)!
 

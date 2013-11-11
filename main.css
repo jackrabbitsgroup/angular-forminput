@@ -19,11 +19,11 @@ Adapted from https://github.com/ProLoser/Flexbox.less but with some additions (i
   background-color: #c8c8c8;
   border: solid 1px #aaa;
   color: #333;
-  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQtdWNnZy1nZW5lcmF0ZWQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y0ZjRmNCIgc3RvcC1vcGFjaXR5PSIxIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNmMGYwZjAiIHN0b3Atb3BhY2l0eT0iMSIvPnJnYigyMDUyMDUyMDUpIDUxJXJnYigyMjAyMjAyMjApIDEwMCU8L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+PC9zdmc+);
-  background-image: -moz-linear-gradient(-90deg, #f4f4f4 0%, #f0f0f0 50%, rgb(205,205,205) 51%, rgb(220,220,220) 100%);
-  background-image: -webkit-linear-gradient(-90deg, #f4f4f4 0%, #f0f0f0 50%, rgb(205,205,205) 51%, rgb(220,220,220) 100%);
-  background-image: -o-linear-gradient(-90deg, #f4f4f4 0%, #f0f0f0 50%, rgb(205,205,205) 51%, rgb(220,220,220) 100%);
-  background-image: linear-gradient(180deg, #f4f4f4 0%, #f0f0f0 50%, rgb(205,205,205) 51%, rgb(220,220,220) 100%);
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9Imxlc3NoYXQtZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmNGY0ZjQiIHN0b3Atb3BhY2l0eT0iMSIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjZjBmMGYwIiBzdG9wLW9wYWNpdHk9IjEiLz48c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2NkY2RjZCIgc3RvcC1vcGFjaXR5PSIxIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZGNkY2RjIiBzdG9wLW9wYWNpdHk9IjEiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjbGVzc2hhdC1nZW5lcmF0ZWQpIiAvPjwvc3ZnPg==);
+  background-image: -webkit-linear-gradient(-90deg, #f4f4f4 0%, #f0f0f0 50%, #cdcdcd 51%, #dcdcdc 100%);
+  background-image: -moz-linear-gradient(-90deg, #f4f4f4 0%, #f0f0f0 50%, #cdcdcd 51%, #dcdcdc 100%);
+  background-image: -o-linear-gradient(-90deg, #f4f4f4 0%, #f0f0f0 50%, #cdcdcd 51%, #dcdcdc 100%);
+  background-image: linear-gradient(180deg, #f4f4f4 0%, #f0f0f0 50%, #cdcdcd 51%, #dcdcdc 100%);
   padding: 1px 5px;
   margin: 3px 3px;
 }
@@ -33,7 +33,6 @@ Adapted from https://github.com/ProLoser/Flexbox.less but with some additions (i
 .jrg-multiselect-selected-opt-remove {
   cursor: pointer;
   /*color:rgb(200,150,150);*/
-
   color: #323232;
   font-weight: bold;
   font-size: .8em;
@@ -90,9 +89,7 @@ input:focus.jrg-multiselect-input {
   height: 100%;
   padding: 5px;
   /*margin: 5px 0;*/
-
   /*border: solid 1px black;*/
-
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -141,7 +138,6 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 	max-width:150px;
 	margin-top:8px;
 	*/
-
 }
 .jrg-forminput-submit {
   margin-top: 8px;
@@ -167,6 +163,8 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
   display: -o-flex;
   display: flex;
   width: 100%;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
   -ms-box-orient: horizontal;
@@ -204,7 +202,6 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 .jrg-forminput-form.wider .jrg-forminput-input,
 .jrg-forminput-form.widest .jrg-forminput-input {
   /*float:left;*/
-
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -ms-box-flex: 1;
@@ -221,7 +218,6 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 	margin:2px (@input-extra-margin*1px);		//give some spacing to reduce chances of input overflowing (i.e. for border-radius rounded corners)
 	margin:2px 0;		//give some spacing to reduce chances of input overflowing (i.e. for border-radius rounded corners) BUT ensure no left/right padding since that could lead to width:100%; inputs overflowing outside it's container!
 	*/
-
   display: block;
 }
 .jrg-forminput-form.wide button[type='submit'],
@@ -229,21 +225,18 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 .jrg-forminput-form.wide .jrg-forminput-validation {
   margin-left: 95px;
   /*max-width:100%;*/
-
 }
 .jrg-forminput-form.wider button[type='submit'],
 .jrg-forminput-form.wider .jrg-forminput-submit,
 .jrg-forminput-form.wider .jrg-forminput-validation {
   margin-left: 125px;
   /*max-width:100%;*/
-
 }
 .jrg-forminput-form.widest button[type='submit'],
 .jrg-forminput-form.widest .jrg-forminput-submit,
 .jrg-forminput-form.widest .jrg-forminput-validation {
   margin-left: 155px;
   /*max-width:100%;*/
-
 }
 .jrg-forminput-form.wide .jrg-forminput-validation,
 .jrg-forminput-form.wider .jrg-forminput-validation,

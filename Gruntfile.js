@@ -59,7 +59,8 @@ module.exports = function(grunt) {
 				},
 				beforeconcat:   {
 					options: {
-						force:	false
+						force:	false,
+						ignores: ['**.min.js']
 					},
 					files: {
 						src: []
