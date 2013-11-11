@@ -3,7 +3,7 @@
 - checkbox - allow true/false values to be specified in scope (rather than just attrs)
 - add specific input type directives to be included here (checkbox, etc.)
 - add more/customized validation
-- bug fix / figure out why Angular 1.2.0rc3 no longer sets form validity properly even though all inputs are valid.. worked in Angular 1.1.5
+- bug fix / figure out why Angular 1.2.0rc3 no longer sets form validity properly even though all inputs are valid.. worked in Angular 1.1.5 - maybe due to changing priority? I removed priority and transclude and it still worked so maybe without those, it will work again? Need to test/try it..
 
 Adds consistent layout (inluding input labels) and styling to an input element so groups of inputs all look the same. Also adds validation. Basically makes it faster and easier to build forms by making it just 1 line of directive code in your partial (rather than several) to create a full, nice looking input.
 This directive is typically NOT meant to be used with just one input by itself or for a group of inputs that do NOT have a lot in common - since the whole point of this directive is to make a GROUP of inputs look the same.
@@ -143,8 +143,8 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 		restrict: 'A',
 		//NOTE: transclude and terminal don't play nice together and those plus priority are finicky; I don't really understand it, but in order for BOTH the $scope.form.$valid to be accurate AND the ngModel to carry through, need:
 		//transclude: true, terminal: false
-		transclude: true,	//NOTE: this does NOT work the same with "terminal" set, so after to use "transclude" function instead of ng-transclude..		//NOTE: this apparently is REQUIRED even if not using transclude..
-		priority:100,		//we need this AND terminal - otherwise the form will not be $valid on submit (priority 100 so this will happen before ngModel)
+		// transclude: true,	//NOTE: this does NOT work the same with "terminal" set, so after to use "transclude" function instead of ng-transclude..		//NOTE: this apparently is REQUIRED even if not using transclude..		//UPDATE: 2013.11.11 - apparently NOT needed (anymore)?
+		// priority:100,		//we need this AND terminal - otherwise the form will not be $valid on submit (priority 100 so this will happen before ngModel)		//UPDATE: 2013.11.11 - apparently NOT needed (anymore)?
 		//terminal: true,		//can NOT be set otherwise ngModel value will be blank / not accurrate		//we need this AND priority - otherwise the form will not be $valid on submit
 		scope: {
 			ngModel:'=',
@@ -289,6 +289,9 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			
 			return function(scope, element, attrs, formCtrl) {
 			
+				// console.log('scope.ngModel: '+scope.ngModel);
+				// $compile(angular.element(element))(scope);
+				
 				//if was in an ng-repeat, they'll have have the same compile function so have to set the id here, NOT in the compile function (otherwise they'd all be the same..)
 				if(attrs.id ===undefined) {
 					attrs.id ="jrgFormInput"+attrs.type+Math.random().toString(36).substring(7);
