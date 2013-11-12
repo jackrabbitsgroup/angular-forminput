@@ -1,6 +1,6 @@
 {
   "name": "angular-multiselect",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": [
     "Luke Madera <luke.madera@gmail.com>"
   ],
@@ -30,11 +30,11 @@
   },
   "devDependencies": {},
   "homepage": "https://github.com/jackrabbitsgroup/angular-multiselect",
-  "_release": "1.0.1",
+  "_release": "1.0.2",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.1",
-    "commit": "944b0e7a6d564ff721769b21840e7862d564c612"
+    "tag": "v1.0.2",
+    "commit": "e5accfd9ed338605c2f6b4296f6dd404f163cadf"
   },
   "_source": "git://github.com/jackrabbitsgroup/angular-multiselect.git",
   "_target": "*",

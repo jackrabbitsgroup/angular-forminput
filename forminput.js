@@ -138,7 +138,7 @@ $scope.formVals ={
 
 'use strict';
 
-angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput', ['$compile', '$http', '$timeout', function ($compile, $http, $timeout) {
+angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput', ['$timeout', function ($timeout) {
   return {
 		restrict: 'A',
 		//NOTE: transclude and terminal don't play nice together and those plus priority are finicky; I don't really understand it, but in order for BOTH the $scope.form.$valid to be accurate AND the ngModel to carry through, need:
@@ -159,7 +159,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 		},
 		require: '?^form',		//if we are in a form then we can access the formController (necessary for validation to work)
 
-		compile: function(element, attrs, transclude) {
+		template: function(element, attrs) {
 			if(!attrs.type) {
 				attrs.type ='text';		//default
 			}
@@ -285,94 +285,102 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			html.validation ="<div class='jrg-forminput-validation text-error' ng-repeat='(key, error) in field.$error track by $id($index)' ng-show='error && field.$dirty' class='help-inline'>{{opts1.validationMessages[key]}} <span ng-show='!opts1.validationMessages[key]'>Invalid</span></div>";		//generic "Invalid" error message if message for this key doesn't exist
 			
 			var htmlFull ="<div class='jrg-forminput-cont'><div class='jrg-forminput'>"+html.label+html.input+"</div>"+html.validation+"</div>";
-			element.replaceWith(htmlFull);
 			
-			return function(scope, element, attrs, formCtrl) {
+			//save on attrs for use later
+			attrs.elementTag =elementTag;
+			attrs.uniqueName =uniqueName;
 			
-				// console.log('scope.ngModel: '+scope.ngModel);
-				// $compile(angular.element(element))(scope);
+			return htmlFull;
+		},
+			
+		link: function(scope, element, attrs, formCtrl) {
+		
+			// console.log('scope.ngModel: '+scope.ngModel);
+			// $compile(angular.element(element))(scope);
+			
+			//if was in an ng-repeat, they'll have have the same compile function so have to set the id here, NOT in the compile function (otherwise they'd all be the same..)
+			if(attrs.id ===undefined) {
+				attrs.id ="jrgFormInput"+attrs.type+Math.random().toString(36).substring(7);
+			}
+			if(!attrs.name) {
+				attrs.name =attrs.id;
+			}
+			scope.id =attrs.id;
+			scope.name =attrs.name;
+			
+			//update the OLD name with the NEW name
+			element.find(attrs.elementTag+'.jrg-forminput-input').attr('name', attrs.name);
+			
+			/*
+			//NOT WORKING..
+			//if was in an ng-repeat, they'll all have the same id's so need to re-write the html with new unique id's..
+			if(scope.$parent.$index !=undefined) {		//ng-repeat has $parent.$index so use this to test
+				var oldId =attrs.id;		//save for replacing later
+				attrs.id ="jrgFormInput"+attrs.type+Math.random().toString(36).substring(7);		//overwrite with new one (link function is run per each item so this will generate new id's for EACH instance, which is what we want to ensure uniqueness)
 				
-				//if was in an ng-repeat, they'll have have the same compile function so have to set the id here, NOT in the compile function (otherwise they'd all be the same..)
-				if(attrs.id ===undefined) {
-					attrs.id ="jrgFormInput"+attrs.type+Math.random().toString(36).substring(7);
-				}
-				if(!attrs.name) {
-					attrs.name =attrs.id;
-				}
-				scope.id =attrs.id;
-				scope.name =attrs.name;
-				
-				//update the OLD name with the NEW name
-				element.find(elementTag+'.jrg-forminput-input').attr('name', attrs.name);
-				
+				var newHtml =element.html().replace(new RegExp(oldId,"gm"), attrs.id);
+				element.html(newHtml);
+				$compile(angular.element(element))(scope);
+			}
+			*/
+			
+			/*
+			//do NOT do this anymore with move to template function / angular 1.2.0
+			if(attrs.type =='multi-select' || attrs.type =='date' || attrs.type =='datetime') {
+				$compile(angular.element(element))(scope);
+			}
+			*/
+			
+			if(attrs.type =='checkbox') {
 				/*
-				//NOT WORKING..
-				//if was in an ng-repeat, they'll all have the same id's so need to re-write the html with new unique id's..
-				if(scope.$parent.$index !=undefined) {		//ng-repeat has $parent.$index so use this to test
-					var oldId =attrs.id;		//save for replacing later
-					attrs.id ="jrgFormInput"+attrs.type+Math.random().toString(36).substring(7);		//overwrite with new one (link function is run per each item so this will generate new id's for EACH instance, which is what we want to ensure uniqueness)
-					
-					var newHtml =element.html().replace(new RegExp(oldId,"gm"), attrs.id);
-					element.html(newHtml);
-					$compile(angular.element(element))(scope);
-				}
+				//doesn't work - apparently can't set ng-true-value and ng-false-value via scope... 
+				var defaultCheckboxVals ={
+					ngTrueValue: '1',
+					ngFalseValue: '0'
+				};
+				scope.checkboxVals =angular.extend(defaultCheckboxVals, scope.checkboxVals);
 				*/
-				
-				if(attrs.type =='multi-select' || attrs.type =='date' || attrs.type =='datetime') {
-					$compile(angular.element(element))(scope);
+				//force to string (otherwise won't match properly and won't start checked even if ngModel equals the integer value of the ng-true-value)
+				if(scope.ngModel !==undefined) {
+					scope.ngModel =scope.ngModel.toString();
 				}
-				
-				if(attrs.type =='checkbox') {
-					/*
-					//doesn't work - apparently can't set ng-true-value and ng-false-value via scope... 
-					var defaultCheckboxVals ={
-						ngTrueValue: '1',
-						ngFalseValue: '0'
-					};
-					scope.checkboxVals =angular.extend(defaultCheckboxVals, scope.checkboxVals);
-					*/
-					//force to string (otherwise won't match properly and won't start checked even if ngModel equals the integer value of the ng-true-value)
-					if(scope.ngModel !==undefined) {
-						scope.ngModel =scope.ngModel.toString();
-					}
-				}
+			}
+			
+			/**
+			@toc 0.
+			*/
+			//set up validation
+			if(formCtrl) {
+				//copy over the OLD unique name to the NEW unique name then delete the old one (since at this point, formCtrl is outdated/has bad info since the name of the input has CHANGED)
+				formCtrl[attrs.name] =formCtrl[attrs.uniqueName];
+				delete formCtrl[attrs.uniqueName];
+				//set the scope.field value equal to the formCtrl input handle for validation to work
+				scope.field =formCtrl[attrs.name];
 				
 				/**
-				@toc 0.
+				Unfortunately Angular 1.2 no longer properly sets form validity (worked in Angular 1.1.5) so have to watch each input and check all of them on each change - if they're all valid, set the form to valid - @todo - fix this so can get rid of the $watch, which is performance intensive and shouldn't be necessary..
+				@toc 0.5.
+				@method scope.$watch('ngModel',..
 				*/
-				//set up validation
-				if(formCtrl) {
-					//copy over the OLD unique name to the NEW unique name then delete the old one (since at this point, formCtrl is outdated/has bad info since the name of the input has CHANGED)
-					formCtrl[attrs.name] =formCtrl[uniqueName];
-					delete formCtrl[uniqueName];
-					//set the scope.field value equal to the formCtrl input handle for validation to work
-					scope.field =formCtrl[attrs.name];
-					
-					/**
-					Unfortunately Angular 1.2 no longer properly sets form validity (worked in Angular 1.1.5) so have to watch each input and check all of them on each change - if they're all valid, set the form to valid - @todo - fix this so can get rid of the $watch, which is performance intensive and shouldn't be necessary..
-					@toc 0.5.
-					@method scope.$watch('ngModel',..
-					*/
-					scope.$watch('ngModel', function(newVal, oldVal) {
-						if(!angular.equals(oldVal, newVal)) {		//very important to do this for performance reasons since $watch runs all the time
-							// console.log('formCtrl.$valid: '+formCtrl.$valid);
-							var xx, valid =true;
-							for(xx in formCtrl) {
-								if(formCtrl[xx].$valid !==undefined && formCtrl[xx].$valid !==true) {
-									valid =false;
-									break;
-								}
+				scope.$watch('ngModel', function(newVal, oldVal) {
+					if(!angular.equals(oldVal, newVal)) {		//very important to do this for performance reasons since $watch runs all the time
+						// console.log('formCtrl.$valid: '+formCtrl.$valid);
+						var xx, valid =true;
+						for(xx in formCtrl) {
+							if(formCtrl[xx].$valid !==undefined && formCtrl[xx].$valid !==true) {
+								valid =false;
+								break;
 							}
-							// console.log('valid: '+valid);
-							// formCtrl.$setValidity(valid);		//not working / throwing an error the first time we try to set it to true
-							formCtrl.$valid =valid;
-							formCtrl.$invalid =!valid;
-							// console.log('formCtrl.$valid 2: '+formCtrl.$valid);
 						}
-					});
-			
-				}
-			};
+						// console.log('valid: '+valid);
+						// formCtrl.$setValidity(valid);		//not working / throwing an error the first time we try to set it to true
+						formCtrl.$valid =valid;
+						formCtrl.$invalid =!valid;
+						// console.log('formCtrl.$valid 2: '+formCtrl.$valid);
+					}
+				});
+		
+			}
 		},
 		controller: function($scope, $element, $attrs) {
 			$scope.opts1 ={};		//can't use $scope.opts in case it's not defined/set otherwise get "Non-assignable model expression.." error..
