@@ -159,6 +159,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 		},
 		require: '?^form',		//if we are in a form then we can access the formController (necessary for validation to work)
 
+		replace: true,
 		template: function(element, attrs) {
 			if(!attrs.type) {
 				attrs.type ='text';		//default
