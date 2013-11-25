@@ -6,10 +6,10 @@ Provides consistent, responsive styling and validation for forms/inputs. Build a
 http://jackrabbitsgroup.github.io/angular-forminput/
 
 ## Dependencies
-- required:
+
+- optional
 	- `lesshat`
 	- `less-flexbox`
-- optional
 	- `angular-multiselect` if using the multi-select input type
 	- `angular-datetimepicker` if using the datetime or date input types
 
@@ -21,7 +21,7 @@ See `bower.json` and `index.html` in the `gh-pages` branch for a full list / mor
 		1. add `"angular-forminput": "latest"` to your `bower.json` file then run `bower install` OR run `bower install angular-forminput`
 2. include the files in your app
 	1. forminput.min.js
-	2. forminput.less
+	2. forminput.less OR forminput.min.css OR forminput.css
 3. include the module in angular (i.e. in `app.js`) - `jackrabbitsgroup.angular-forminput`
 
 See the `gh-pages` branch, files `bower.json` and `index.html` for a full example.
