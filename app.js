@@ -21,7 +21,7 @@ config(['$routeProvider', '$locationProvider', '$compileProvider', function($rou
 	// var staticPath ='/';
 	var staticPath;
 	staticPath ='/angular-directives/angular-forminput/';		//local
-	staticPath ='/angular-forminput/';		//gh-pages
+	// staticPath ='/angular-forminput/';		//gh-pages
 	var appPathRoute =staticPath;
 	var pagesPath =staticPath+'pages/';
 	

@@ -1,6 +1,6 @@
 {
   "name": "angular-datetimepicker",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "authors": [
     "Luke Madera <luke.madera@gmail.com>"
   ],
@@ -25,18 +25,18 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.0",
-    "angular-animate": "~1.2.0",
-    "angular-sanitize": "~1.2.0",
-    "angular-touch": "~1.2.0"
+    "angular": "~1.2.2",
+    "angular-animate": "~1.2.2",
+    "angular-sanitize": "~1.2.2",
+    "angular-touch": "~1.2.2"
   },
   "devDependencies": {},
   "homepage": "https://github.com/jackrabbitsgroup/angular-datetimepicker",
-  "_release": "1.0.3",
+  "_release": "1.0.5",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.3",
-    "commit": "0e063c772b9d264dbd7567270d46c2e7ab101d5e"
+    "tag": "v1.0.5",
+    "commit": "615d4a5b891df501ffbbae90024eff9350cf9c58"
   },
   "_source": "git://github.com/jackrabbitsgroup/angular-datetimepicker.git",
   "_target": "*",
