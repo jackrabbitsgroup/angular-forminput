@@ -395,6 +395,11 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 					number: 'Must be a number!'
 				}
 			};
+			//fix for webkit where type='number' inputs just clear the value on invalid characters so we see the (wrong) required error message rather than a more descriptive/accurate 'must be a number' or 'invalid characters' error messages
+			if($attrs.type =='number') {
+				defaultOpts.validationMessages.required ='Must be a valid number!';
+			}
+			
 			if(!$scope.opts || $scope.opts ===undefined) {
 				$scope.opts1 =defaultOpts;
 			}

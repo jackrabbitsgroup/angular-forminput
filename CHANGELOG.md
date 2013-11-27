@@ -1,5 +1,10 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.0.5-1
+# Features
+- webkit fix/support for better validation message (not just 'required') for number input types
+
+
 # 1.0.5
 # Features
 - generate forminput.css and forminput.min.css for non LESS support
