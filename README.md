@@ -10,6 +10,7 @@ http://jackrabbitsgroup.github.io/angular-forminput/
 - optional
 	- `lesshat`
 	- `less-flexbox`
+	- `angular-autocomplete` if using the autocomplete input type
 	- `angular-multiselect` if using the multi-select input type
 	- `angular-datetimepicker` if using the datetime or date input types
 

@@ -12,6 +12,7 @@ SUPPORTED INPUT TYPES:
 text, email, tel, number, url,
 password,
 textarea,
+autocomplete,
 select, multi-select,
 date, datetime,
 checkbox
@@ -22,6 +23,7 @@ file/image?,
 datetime-local??, time?
 
 @dependencies
+- jrg-autocomplete directive (for autocomplete input type only)
 - jrg-multiselect directive (for multi-select input type only)
 - jrg-datetimepicker directive (for datetime input type only)
 
@@ -39,6 +41,7 @@ scope (attrs that must be defined on the scope (i.e. in the controller) - they c
 	@param {Object} opts
 		@param {Function} [ngChange] Will be called AFTER the value is updated. NOT supported for date/datetime input types (use onchangeDatetime instead). NOTE: this will NOT fire if the value is invalid (will fire though after the value is valid).
 		@param {Object} [validationMessages] Key-value pairs of validation messages to display (i.e. {minlength: 'Too short!'} )
+	@param {Array} [valsAutocomplete] REQUIRED for 'autocomplete' type. Array of strings to auto complete with.
 	@param {Array} [selectOpts] REQUIRED for 'select' and 'multi-select' type. These are options for the <select>. Each item is an object of:
 		@param {String} val Value of this option. NOTE: this should be a STRING, not a number or int type variable. Values will be coerced to 'string' here but for performance and to ensure accurate display, pass these in as strings (i.e. 1 would become '1'). UPDATE: they may not actually have to be strings but this type coercion ensures the ngModel matches the options since 1 will not match '1' and then the select value won't be set properly. So basically types need to match so just keep everything in strings. Again, ngModel type coercion will be done here but it's best to be safe and just keep everything as strings.
 		@param {String} name text/html to display for this option
@@ -77,6 +80,33 @@ controller / js:
 $scope.formVals ={
 	title:'test title here'
 };
+$scope.opts ={
+	ngChange: function() {$scope.searchTasks({}); }
+};
+
+$scope.searchTasks =function() {
+	//do something
+};
+
+
+
+
+//1.5 autocomplete
+partial / html:
+<form name='myForm'>
+	<div jrg-forminput type='autocomplete' placeholder='Title' vals-autocomplete='valsAutocomplete' ng-model='formVals.title' opts='opts'></div>
+</form>
+
+controller / js:
+$scope.formVals ={
+	title:'test title here'
+};
+$scope.valsAutocomplete =[
+	'yes',
+	'no',
+	'maybe',
+	'so'
+];
 $scope.opts ={
 	ngChange: function() {$scope.searchTasks({}); }
 };
@@ -150,6 +180,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			ngModel:'=',
 			opts:'=?',		//supported on v1.1 versions (but not on stable releases of AngularJS yet (as of 2013.04.30))
 			// opts:'=',
+			valsAutocomplete: '=',
 			selectOpts:'=',
 			optsDatetime: '=?',
 			// checkboxVals: '=?',
@@ -245,6 +276,14 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 					html.input +="ng-click='ngClick()' ";
 				}
 				html.input+="/></div>";
+			}
+			else if(attrs.type =='autocomplete') {
+				elementTag ='div';
+				html.input ="<div class='jrg-forminput-input'><div name='"+uniqueName+"' jrg-autocomplete ng-change='onchange({})' ng-model='ngModel' vals='valsAutocomplete' config='opts' ";
+				if(attrs.ngClick) {
+					html.input +="ng-click='ngClick()' ";
+				}
+				html.input+="></div></div>";
 			}
 			else if(attrs.type =='select') {
 				elementTag ='select';

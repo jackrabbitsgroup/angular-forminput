@@ -1,5 +1,9 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.0.6
+# Features
+- add angular-autocomplete directive support
+
 # 1.0.5-1
 # Features
 - webkit fix/support for better validation message (not just 'required') for number input types
