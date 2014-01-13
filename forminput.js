@@ -279,7 +279,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			}
 			else if(attrs.type =='autocomplete') {
 				elementTag ='div';
-				html.input ="<div class='jrg-forminput-input'><div name='"+uniqueName+"' jrg-autocomplete ng-change='onchange({})' ng-model='ngModel' vals='valsAutocomplete' config='opts' ";
+				html.input ="<div class='jrg-forminput-input'><div name='"+uniqueName+"' jrg-autocomplete ng-change='onchange({})' ng-model='ngModel' vals='valsAutocomplete' placeholder='"+placeholder+"' config='opts' ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
 				}
