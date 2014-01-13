@@ -48,6 +48,13 @@ angular.module('myApp').controller('HomeCtrl', ['$scope', '$timeout', function($
 		{val: 'female', name: 'Female'}
 	];
 	
+	$scope.valsAutocomplete =[
+		'yes',
+		'no',
+		'maybe',
+		'so'
+	];
+	
 	$scope.selectOptsInterests =[
 		{val: 'sports', name: 'Sports'},
 		{val: 'cooking', name: 'Cooking'},

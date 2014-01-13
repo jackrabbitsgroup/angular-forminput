@@ -1,0 +1,37 @@
+{
+  "name": "angular-autocomplete-demo",
+  "version": "1.0.0",
+  "authors": [
+    "Luke Madera <luke.madera@gmail.com>"
+  ],
+  "description": "Demo",
+  "keywords": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.0",
+    "angular-animate": "~1.2.0",
+    "angular-sanitize": "~1.2.0",
+    "angular-touch": "~1.2.0",
+    "angular-route": "~1.2.0"
+  },
+  "devDependencies": {
+    "lesshat": "latest"
+  },
+  "homepage": "https://github.com/jackrabbitsgroup/angular-autocomplete",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "b054516080611cbe9fd75cd64336e6127b2d2611"
+  },
+  "_source": "git://github.com/jackrabbitsgroup/angular-autocomplete.git",
+  "_target": "*",
+  "_originalSource": "angular-autocomplete"
+}
