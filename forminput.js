@@ -186,7 +186,8 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			// checkboxVals: '=?',
 			validateDatetime: '&?',
 			onchangeDatetime: '&?',
-			ngClick: '&?'
+			ngClick: '&?',
+			loadMore: '&?'
 		},
 		require: '?^form',		//if we are in a form then we can access the formController (necessary for validation to work)
 
@@ -279,7 +280,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			}
 			else if(attrs.type =='autocomplete') {
 				elementTag ='div';
-				html.input ="<div class='jrg-forminput-input'><div name='"+uniqueName+"' jrg-autocomplete ng-change='onchange({})' ng-model='ngModel' vals='valsAutocomplete' placeholder='"+placeholder+"' config='opts' ";
+				html.input ="<div class='jrg-forminput-input'><div name='"+uniqueName+"' jrg-autocomplete ng-change='onchange({})' ng-model='ngModel' vals='valsAutocomplete' placeholder='"+placeholder+"' config='opts' "+customAttrs+" ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
 				}
@@ -296,8 +297,12 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			else if(attrs.type =='multi-select') {
 				elementTag ='div';
 				html.input ="<div class='jrg-forminput-input'><div name='"+uniqueName+"' jrg-multiselect select-opts='selectOpts' ng-model='ngModel' config='opts' ";
+				//NOTE: no customAttrs here..		//@todo - add them??
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
+				}
+				if(attrs.loadMore) {
+					html.input +="load-more='loadMoreWrapper' ";
 				}
 				//add onchange / ng-change handling (multi-select directive uses 'on-change-evt' attr rather than ng-change)
 				attrs.onChangeEvt =uniqueName+'MultiSelectOnChange';
@@ -480,6 +485,15 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				}
 				if($attrs.type =='datetime') {
 					$scope.optsDatetime.pikaday.showTime =true;
+				}
+			}
+			
+			//set up some function that need to be passed through (apparently can't easily do it.. have to make another outer wrapper here..)
+			if($attrs.type =='multi-select') {
+				if($scope.loadMore !==undefined) {
+					$scope.loadMoreWrapper =function(params, callback) {
+						$scope.loadMore()(params, callback);
+					};
 				}
 			}
 			
