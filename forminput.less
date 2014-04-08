@@ -72,6 +72,7 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 
 
 /* side by side label layout */
+@width-wide-icon: 15;
 @width-wide: 85;
 @width-wider: 115;
 @width-widest: 145;
@@ -79,7 +80,7 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 //@input-extra-margin: 4;
 @input-extra-margin: 0;
 
-.jrg-forminput-form.wide .jrg-forminput, .jrg-forminput-form.wider .jrg-forminput, .jrg-forminput-form.widest .jrg-forminput
+.jrg-forminput-form.wide .jrg-forminput, .jrg-forminput-form.wider .jrg-forminput, .jrg-forminput-form.widest .jrg-forminput, .jrg-forminput-form.wide-icon .jrg-forminput
 {
 	.display(flex);
 	// corrects firefox
@@ -87,13 +88,13 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 	.flex-direction(row);
 }
 /*
-.wide .jrg-forminput.styled-checkbox, .wider .jrg-forminput.styled-checkbox, .widest .jrg-forminput.styled-checkbox
+.wide .jrg-forminput.styled-checkbox, .wider .jrg-forminput.styled-checkbox, .widest .jrg-forminput.styled-checkbox, .wide-icon .jrg-forminput.styled-checkbox
 {
 	display:block;
 }
 */
 
-.jrg-forminput-form.wide label, .jrg-forminput-form.wider label, .jrg-forminput-form.widest label
+.jrg-forminput-form.wide label, .jrg-forminput-form.wider label, .jrg-forminput-form.widest label, .jrg-forminput-form.wide-icon label
 {
 	margin-top:9px;
 	text-align:right;
@@ -111,7 +112,11 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 {
 	width:@width-widest*1px;
 }
-.jrg-forminput-form.wide .jrg-forminput-input, .jrg-forminput-form.wider .jrg-forminput-input, .jrg-forminput-form.widest .jrg-forminput-input
+.jrg-forminput-form.wide-icon label
+{
+	width:@width-wide-icon*1px;
+}
+.jrg-forminput-form.wide .jrg-forminput-input, .jrg-forminput-form.wider .jrg-forminput-input, .jrg-forminput-form.widest .jrg-forminput-input, .jrg-forminput-form.wide-icon .jrg-forminput-input
 {
 	/*float:left;*/
 	.flex(1);
@@ -136,7 +141,11 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 	margin-left:(@width-widest+@input-margin-right+@input-extra-margin)*1px;
 	/*max-width:100%;*/
 }
-.jrg-forminput-form.wide .jrg-forminput-validation, .jrg-forminput-form.wider .jrg-forminput-validation, .jrg-forminput-form.widest .jrg-forminput-validation {
+.jrg-forminput-form.wide-icon button[type='submit'], .jrg-forminput-form.wide-icon .jrg-forminput-submit, .jrg-forminput-form.wide-icon .jrg-forminput-validation {
+	margin-left:(@width-wide-icon+@input-margin-right+@input-extra-margin)*1px;
+	/*max-width:100%;*/
+}
+.jrg-forminput-form.wide .jrg-forminput-validation, .jrg-forminput-form.wider .jrg-forminput-validation, .jrg-forminput-form.widest .jrg-forminput-validation, .jrg-forminput-form.wide-icon .jrg-forminput-validation {
 	padding-top:2px;
 }
 

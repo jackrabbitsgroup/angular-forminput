@@ -1,5 +1,9 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.0.8
+# Features
+- add `wide-icon` smaller label width
+
 # 1.0.7
 # Features
 - multi-select: add loadMore function pass through support
