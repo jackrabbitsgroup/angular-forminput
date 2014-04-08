@@ -314,7 +314,8 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 /* side by side label layout */
 .jrg-forminput-form.wide .jrg-forminput,
 .jrg-forminput-form.wider .jrg-forminput,
-.jrg-forminput-form.widest .jrg-forminput {
+.jrg-forminput-form.widest .jrg-forminput,
+.jrg-forminput-form.wide-icon .jrg-forminput {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
@@ -327,14 +328,15 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
   flex-direction: row;
 }
 /*
-.wide .jrg-forminput.styled-checkbox, .wider .jrg-forminput.styled-checkbox, .widest .jrg-forminput.styled-checkbox
+.wide .jrg-forminput.styled-checkbox, .wider .jrg-forminput.styled-checkbox, .widest .jrg-forminput.styled-checkbox, .wide-icon .jrg-forminput.styled-checkbox
 {
 	display:block;
 }
 */
 .jrg-forminput-form.wide label,
 .jrg-forminput-form.wider label,
-.jrg-forminput-form.widest label {
+.jrg-forminput-form.widest label,
+.jrg-forminput-form.wide-icon label {
   margin-top: 9px;
   text-align: right;
   margin-right: 10px;
@@ -348,9 +350,13 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 .jrg-forminput-form.widest label {
   width: 145px;
 }
+.jrg-forminput-form.wide-icon label {
+  width: 15px;
+}
 .jrg-forminput-form.wide .jrg-forminput-input,
 .jrg-forminput-form.wider .jrg-forminput-input,
-.jrg-forminput-form.widest .jrg-forminput-input {
+.jrg-forminput-form.widest .jrg-forminput-input,
+.jrg-forminput-form.wide-icon .jrg-forminput-input {
   /*float:left;*/
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
@@ -383,9 +389,16 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
   margin-left: 155px;
   /*max-width:100%;*/
 }
+.jrg-forminput-form.wide-icon button[type='submit'],
+.jrg-forminput-form.wide-icon .jrg-forminput-submit,
+.jrg-forminput-form.wide-icon .jrg-forminput-validation {
+  margin-left: 25px;
+  /*max-width:100%;*/
+}
 .jrg-forminput-form.wide .jrg-forminput-validation,
 .jrg-forminput-form.wider .jrg-forminput-validation,
-.jrg-forminput-form.widest .jrg-forminput-validation {
+.jrg-forminput-form.widest .jrg-forminput-validation,
+.jrg-forminput-form.wide-icon .jrg-forminput-validation {
   padding-top: 2px;
 }
 /* columns */
