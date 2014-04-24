@@ -65,6 +65,7 @@ attrs
 	@param {String} [placeholder =''] Placeholder text for input (defaults to attrs.label if placeholder is not defined)
 	@param {String} [label =''] Text for <label> (defaults to attrs.placeholder if label is not defined)
 	@param {Number} [noLabel] Set to 1 to not show label
+	@param {String} [hint =''] Hint text to go below input
 	
 
 @usage
@@ -211,6 +212,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			var classes =attrs.class || '';
 			var placeholder =attrs.placeholder || attrs.label || '';
 			var label =attrs.label || attrs.placeholder || '';
+			var hint =attrs.hint || '';
 			
 			//was going to try to put html in templates but since don't have access to scope in compile function, there's no way to set dynamic values, which is the whole point of this directive.. Plus it's better for performance to just have things here, even though it breaks the "separation of html and javascript" convention..
 			// $http.get('template/' + template + '.html', {cache:$templateCache}).then(function(response) {
@@ -218,15 +220,19 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			var html ={
 				label: '',
 				input: '',
+				hint: '',
 				validation: ''
 			};
 			if(label && !attrs.noLabel) {
 				html.label ="<label>"+label+"</label>";
 			}
+			if(hint) {
+				html.hint ="<div class='jrg-forminput-hint'>"+hint+"</div>";
+			}
 			
 			//copy over attributes
 			var customAttrs ='';		//string of attrs to copy over to input
-			var skipAttrs =['jrgForminput', 'ngModel', 'label', 'type', 'placeholder', 'opts', 'name', 'optsDatetime', 'validateDatetime', 'onchangeDatetime', 'checkboxVals', 'ngClick'];
+			var skipAttrs =['jrgForminput', 'ngModel', 'label', 'type', 'placeholder', 'hint', 'opts', 'name', 'optsDatetime', 'validateDatetime', 'onchangeDatetime', 'checkboxVals', 'ngClick'];
 			angular.forEach(attrs, function (value, key) {
 				if (key.charAt(0) !== '$' && skipAttrs.indexOf(key) === -1) {
 					customAttrs+=attrs.$attr[key];
@@ -329,7 +335,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			//'track by $id($index)' is required for Angular >= v1.1.4 otherwise will get a 'duplicates in a repeater are not allowed' error; see here for this solution: http://mutablethought.com/2013/04/25/angular-js-ng-repeat-no-longer-allowing-duplicates/
 			html.validation ="<div class='jrg-forminput-validation text-error' ng-repeat='(key, error) in field.$error track by $id($index)' ng-show='error && field.$dirty' class='help-inline'>{{opts1.validationMessages[key]}} <span ng-show='!opts1.validationMessages[key]'>Invalid</span></div>";		//generic "Invalid" error message if message for this key doesn't exist
 			
-			var htmlFull ="<div class='jrg-forminput-cont'><div class='jrg-forminput'>"+html.label+html.input+"</div>"+html.validation+"</div>";
+			var htmlFull ="<div class='jrg-forminput-cont'><div class='jrg-forminput'>"+html.label+html.input+"</div>"+html.hint+html.validation+"</div>";
 			
 			//save on attrs for use later
 			attrs.elementTag =elementTag;
