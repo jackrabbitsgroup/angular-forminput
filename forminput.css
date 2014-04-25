@@ -22,6 +22,9 @@
 .jrg-forminput-validation {
   padding-bottom: 9px;
 }
+.jrg-forminput-hint {
+  padding-bottom: 3px;
+}
 .jrg-forminput-input {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -127,25 +130,29 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 }
 .jrg-forminput-form.wide button[type='submit'],
 .jrg-forminput-form.wide .jrg-forminput-submit,
-.jrg-forminput-form.wide .jrg-forminput-validation {
+.jrg-forminput-form.wide .jrg-forminput-validation,
+.jrg-forminput-form.wide .jrg-forminput-hint {
   margin-left: 95px;
   /*max-width:100%;*/
 }
 .jrg-forminput-form.wider button[type='submit'],
 .jrg-forminput-form.wider .jrg-forminput-submit,
-.jrg-forminput-form.wider .jrg-forminput-validation {
+.jrg-forminput-form.wider .jrg-forminput-validation,
+.jrg-forminput-form.wider .jrg-forminput-hint {
   margin-left: 125px;
   /*max-width:100%;*/
 }
 .jrg-forminput-form.widest button[type='submit'],
 .jrg-forminput-form.widest .jrg-forminput-submit,
-.jrg-forminput-form.widest .jrg-forminput-validation {
+.jrg-forminput-form.widest .jrg-forminput-validation,
+.jrg-forminput-form.widest .jrg-forminput-hint {
   margin-left: 155px;
   /*max-width:100%;*/
 }
 .jrg-forminput-form.wide-icon button[type='submit'],
 .jrg-forminput-form.wide-icon .jrg-forminput-submit,
-.jrg-forminput-form.wide-icon .jrg-forminput-validation {
+.jrg-forminput-form.wide-icon .jrg-forminput-validation,
+.jrg-forminput-form.wide-icon .jrg-forminput-hint {
   margin-left: 25px;
   /*max-width:100%;*/
 }

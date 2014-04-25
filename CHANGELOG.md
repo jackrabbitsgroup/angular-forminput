@@ -1,5 +1,9 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.0.9
+# Features
+- add `hint` attribute for additional helper element below input (above validation)
+
 # 1.0.8
 # Features
 - add `wide-icon` smaller label width
