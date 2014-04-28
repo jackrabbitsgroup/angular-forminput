@@ -252,6 +252,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			*/
 			var uniqueName ="jrgFormInput"+attrs.type+Math.random().toString(36).substring(7);
 			var elementTag ='input';
+			var elementTagEvt ='input';		//the tag for the event binding (i.e. focus or blur) may be different
 			if(attrs.type =='text' || attrs.type =='email' || attrs.type =='tel' || attrs.type =='number' || attrs.type =='url') {
 				html.input ="<input class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})' type='"+attrs.type+"' placeholder='"+placeholder+"' "+customAttrs+" ";
 				if(attrs.ngClick) {
@@ -268,6 +269,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			}
 			else if(attrs.type =='textarea') {
 				elementTag ='textarea';
+				elementTagEvt ='textarea';
 				html.input ="<textarea class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})'  placeholder='"+placeholder+"' "+customAttrs+" ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
@@ -294,6 +296,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			}
 			else if(attrs.type =='select') {
 				elementTag ='select';
+				elementTagEvt ='select';
 				html.input ="<select class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})' "+customAttrs+" ng-options='opt.val as opt.name for opt in selectOpts' ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
@@ -335,10 +338,11 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			//'track by $id($index)' is required for Angular >= v1.1.4 otherwise will get a 'duplicates in a repeater are not allowed' error; see here for this solution: http://mutablethought.com/2013/04/25/angular-js-ng-repeat-no-longer-allowing-duplicates/
 			html.validation ="<div class='jrg-forminput-validation text-error' ng-repeat='(key, error) in field.$error track by $id($index)' ng-show='error && field.$dirty' class='help-inline'>{{opts1.validationMessages[key]}} <span ng-show='!opts1.validationMessages[key]'>Invalid</span></div>";		//generic "Invalid" error message if message for this key doesn't exist
 			
-			var htmlFull ="<div class='jrg-forminput-cont'><div class='jrg-forminput'>"+html.label+html.input+"</div>"+html.hint+html.validation+"</div>";
+			var htmlFull ="<div class='jrg-forminput-cont {{classes.focus}}'><div class='jrg-forminput'>"+html.label+html.input+"</div>"+html.hint+html.validation+"</div>";
 			
 			//save on attrs for use later
 			attrs.elementTag =elementTag;
+			attrs.elementTagEvt =elementTagEvt;
 			attrs.uniqueName =uniqueName;
 			
 			return htmlFull;
@@ -359,8 +363,32 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			scope.id =attrs.id;
 			scope.name =attrs.name;
 			
+			var selector =attrs.elementTag+'.jrg-forminput-input';		//not working (anymore?)??
+			selector =attrs.elementTag;
+			
 			//update the OLD name with the NEW name
-			element.find(attrs.elementTag+'.jrg-forminput-input').attr('name', attrs.name);
+			element.find(selector).attr('name', attrs.name);
+			
+			/**
+			@property scope.classes Used to change classes on elements (i.e. on focus/blur)
+			@type Object
+			*/
+			scope.classes ={
+				focus: ''
+			};
+			
+			//add on focus (& blur) handler
+			var selectorEvt =attrs.elementTagEvt;
+			angular.element(element.find(selectorEvt)).on('focus', function(evt) {
+				scope.$apply(function() {
+					scope.classes.focus ='focused';
+				});
+			});
+			element.find(selectorEvt).bind('blur', function(evt) {
+				scope.$apply(function() {
+					scope.classes.focus ='';		//reset
+				});
+			});
 			
 			/*
 			//NOT WORKING..

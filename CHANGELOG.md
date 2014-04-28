@@ -1,28 +1,32 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.0.10
+## Features
+- add `focused` class to outer element on focus for styling use
+
 # 1.0.9
-# Features
+## Features
 - add `hint` attribute for additional helper element below input (above validation)
 
 # 1.0.8
-# Features
+## Features
 - add `wide-icon` smaller label width
 
 # 1.0.7
-# Features
+## Features
 - multi-select: add loadMore function pass through support
 
 # 1.0.6
-# Features
+## Features
 - add angular-autocomplete directive support
 
 # 1.0.5-1
-# Features
+## Features
 - webkit fix/support for better validation message (not just 'required') for number input types
 
 
 # 1.0.5
-# Features
+## Features
 - generate forminput.css and forminput.min.css for non LESS support
 - update dependencies
 	- Angular 1.2.2
