@@ -436,3 +436,6 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 }
 */
 /* end: columns */
+.jrg-forminput-cont.focused {
+  background-color: #f0f0f0;
+}
