@@ -1,5 +1,9 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.0.11
+## Features
+- add ng-* validation classes to outer element (for styling use - i.e. to tell if input is invalid)
+
 # 1.0.10
 ## Features
 - add `focused` class to outer element on focus for styling use

@@ -338,7 +338,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			//'track by $id($index)' is required for Angular >= v1.1.4 otherwise will get a 'duplicates in a repeater are not allowed' error; see here for this solution: http://mutablethought.com/2013/04/25/angular-js-ng-repeat-no-longer-allowing-duplicates/
 			html.validation ="<div class='jrg-forminput-validation text-error' ng-repeat='(key, error) in field.$error track by $id($index)' ng-show='error && field.$dirty' class='help-inline'>{{opts1.validationMessages[key]}} <span ng-show='!opts1.validationMessages[key]'>Invalid</span></div>";		//generic "Invalid" error message if message for this key doesn't exist
 			
-			var htmlFull ="<div class='jrg-forminput-cont {{classes.focus}}'><div class='jrg-forminput'>"+html.label+html.input+"</div>"+html.hint+html.validation+"</div>";
+			var htmlFull ="<div class='jrg-forminput-cont {{classes.focus}} {{classes.ngValidation}}'><div class='jrg-forminput'>"+html.label+html.input+"</div>"+html.hint+html.validation+"</div>";
 			
 			//save on attrs for use later
 			attrs.elementTag =elementTag;
@@ -374,7 +374,8 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			@type Object
 			*/
 			scope.classes ={
-				focus: ''
+				focus: '',
+				ngValidation: ''
 			};
 			
 			//add on focus (& blur) handler
@@ -387,6 +388,19 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			element.find(selectorEvt).bind('blur', function(evt) {
 				scope.$apply(function() {
 					scope.classes.focus ='';		//reset
+				});
+			});
+			
+			//copy over classes from input to outer container (for styling - they seem to already be copied over AFTER enter a valid value once, but need them if the initial value is invalid too)
+			//add keyup handler for adding angular validation classes
+			// var selectorEvt =attrs.elementTagEvt;
+			angular.element(element.find(selectorEvt)).on('keyup', function(evt) {
+				scope.$apply(function() {
+					var classes =angular.element(element.find(selectorEvt)).attr('class');
+					//only copy over the ng-* classes
+					var classesArr =classes.match(/ng-(\S+)/g);
+					classes =classesArr.join(' ');
+					scope.classes.ngValidation =classes;
 				});
 			});
 			
