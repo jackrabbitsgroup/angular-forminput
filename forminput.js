@@ -393,7 +393,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			
 			//copy over classes from input to outer container (for styling - they seem to already be copied over AFTER enter a valid value once, but need them if the initial value is invalid too)
 			//add keyup handler for adding angular validation classes
-			var selectorEvt =attrs.elementTagEvt;
+			// var selectorEvt =attrs.elementTagEvt;
 			angular.element(element.find(selectorEvt)).on('keyup', function(evt) {
 				scope.$apply(function() {
 					var classes =angular.element(element.find(selectorEvt)).attr('class');
