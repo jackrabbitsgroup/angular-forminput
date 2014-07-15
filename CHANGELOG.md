@@ -1,5 +1,9 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.0.12
+## Bug Fixes
+- fix formCtrl[xx] undefined ("cannot read $valid of undefined") error
+
 # 1.0.11
 ## Features
 - add ng-* validation classes to outer element (for styling use - i.e. to tell if input is invalid)

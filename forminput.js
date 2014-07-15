@@ -460,9 +460,11 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 						// console.log('formCtrl.$valid: '+formCtrl.$valid);
 						var xx, valid =true;
 						for(xx in formCtrl) {
-							if(formCtrl[xx].$valid !==undefined && formCtrl[xx].$valid !==true) {
-								valid =false;
-								break;
+							if(xx[0] !=='$') {		//skip angular / non-input fields and avoid errors
+								if(formCtrl[xx].$valid !==undefined && formCtrl[xx].$valid !==true) {
+									valid =false;
+									break;
+								}
 							}
 						}
 						// console.log('valid: '+valid);
