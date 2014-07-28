@@ -237,7 +237,18 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				if (key.charAt(0) !== '$' && skipAttrs.indexOf(key) === -1) {
 					customAttrs+=attrs.$attr[key];
 					if(attrs[key]) {
-						customAttrs+='='+attrs[key];
+						//need to add extra quotes for ng-true-value and ng-false-value AND match single quotes vs double quotes - https://github.com/angular/angular.js/blob/master/CHANGELOG.md#breaking-changes-2
+						if(key =='ngTrueValue' || key =='ngFalseValue') {
+							if(attrs[key].indexOf('"') >-1) {
+								customAttrs+='=\''+attrs[key]+'\'';
+							}
+							else {
+								customAttrs+='=\"'+attrs[key]+'\"';
+							}
+						}
+						else {
+							customAttrs+='='+attrs[key];
+						}
 					}
 					customAttrs+=' ';
 				}

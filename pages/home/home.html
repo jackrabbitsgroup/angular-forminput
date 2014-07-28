@@ -13,14 +13,14 @@
 		<div jrg-forminput type='password' placeholder='Password' ng-model='formVals.password' opts='' required ng-minlength='6'></div>
 		
 		<div jrg-forminput type='tel' placeholder='Phone Number' ng-model='formVals.phone' opts='optsPhone' ng-minlength='10' ng-pattern='/^[0-9]+$/'></div>
-		<div jrg-forminput type='number' placeholder='Zip Code' ng-model='formVals.zip_code' opts='' ng-minlength='5' ng-maxlength='5'></div>
+		<div jrg-forminput type='number' placeholder='Zip Code' ng-model='formVals.zip_code' opts='' min='10000' max='99999'></div>
 		<div jrg-forminput type='url' placeholder='Website URL' ng-model='formVals.url' opts=''></div>
 		
 		<div jrg-forminput type='textarea' placeholder='Short Bio' ng-model='formVals.bio' opts=''></div>
 		
 		<div jrg-forminput type='select' placeholder='Gender' ng-model='formVals.gender' select-opts='selectOptsGender' opts=''></div>
 		
-		<div jrg-forminput type='checkbox' label='Terms' ng-model='formVals.terms' ng-true-value='yes' ng-false-value='off' opts=''></div>
+		<div jrg-forminput type='checkbox' label='Terms' ng-model='formVals.terms' ng-true-value="'yes'" ng-false-value='"off"' opts=''></div>
 		
 		<br />Requires angular-autocomplete<br />
 		<div jrg-forminput type='autocomplete' placeholder='Autocomplete' ng-model='formVals.autocomplete' vals-autocomplete='valsAutocomplete' opts='opts'></div>
