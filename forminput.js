@@ -153,7 +153,7 @@ $scope.formVals ={
 //4. checkbox
 partial / html:
 <form name='myForm'>
-	<div jrg-forminput type='checkbox' ng-model='formVals.checkVal' ng-true-value='yes' ng-false-value='off' opts=''></div>
+	<div jrg-forminput type='checkbox' ng-model='formVals.checkVal' ng-true-value='"yes"' ng-false-value='"off"' opts=''></div>
 </form>
 
 controller / js:
