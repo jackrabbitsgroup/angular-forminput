@@ -1,5 +1,11 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.1.0
+## Breaking Changes
+- update to Angular v1.3.0-beta.17
+	- add extra quotes to `ng-true-value` and `ng-false-value` for checkbox input type
+	- change `number` validation from `ng-minlength` and `ng-maxlength` to `min` and `max`
+
 # 1.0.12
 ## Bug Fixes
 - fix formCtrl[xx] undefined ("cannot read $valid of undefined") error
