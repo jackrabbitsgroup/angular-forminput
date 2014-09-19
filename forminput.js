@@ -57,6 +57,7 @@ scope (attrs that must be defined on the scope (i.e. in the controller) - they c
 		@param {String} date
 		@param {Object} params
 	@param {Function} ngClick Declared on scope so it will be "passed-through" appropriately; use as normal ng-click
+	@param {Function} ngBlur Declared on scope so it will be "passed-through" appropriately; use as normal ng-blur
 
 attrs
 	@param {String} [type ='text'] Input type, one of the types listed at the top
@@ -190,6 +191,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			validateDatetime: '&?',
 			onchangeDatetime: '&?',
 			ngClick: '&?',
+			ngBlur: '&?',
 			loadMore: '&?'
 		},
 		require: '?^form',		//if we are in a form then we can access the formController (necessary for validation to work)
@@ -235,7 +237,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			
 			//copy over attributes
 			var customAttrs ='';		//string of attrs to copy over to input
-			var skipAttrs =['jrgForminput', 'ngModel', 'label', 'type', 'placeholder', 'hint', 'opts', 'name', 'optsDatetime', 'validateDatetime', 'onchangeDatetime', 'checkboxVals', 'ngClick', 'charCount'];
+			var skipAttrs =['jrgForminput', 'ngModel', 'label', 'type', 'placeholder', 'hint', 'opts', 'name', 'optsDatetime', 'validateDatetime', 'onchangeDatetime', 'checkboxVals', 'ngClick', 'ngBlur', 'charCount'];
 			angular.forEach(attrs, function (value, key) {
 				if (key.charAt(0) !== '$' && skipAttrs.indexOf(key) === -1) {
 					customAttrs+=attrs.$attr[key];
@@ -272,12 +274,18 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
 				}
+				if(attrs.ngBlur) {
+					html.input +="ng-blur='ngBlur()' ";
+				}
 				html.input+="/>";
 			}
 			else if(attrs.type =='password') {
 				html.input ="<input class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})' type='password' placeholder='"+placeholder+"' "+customAttrs+" ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
+				}
+				if(attrs.ngBlur) {
+					html.input +="ng-blur='ngBlur()' ";
 				}
 				html.input+="/>";
 			}
@@ -287,6 +295,9 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				html.input ="<textarea class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})'  placeholder='"+placeholder+"' "+customAttrs+" ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
+				}
+				if(attrs.ngBlur) {
+					html.input +="ng-blur='ngBlur()' ";
 				}
 				html.input+="></textarea>";
 			}
@@ -298,6 +309,9 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
 				}
+				if(attrs.ngBlur) {
+					html.input +="ng-blur='ngBlur()' ";
+				}
 				html.input+="/></div>";
 			}
 			else if(attrs.type =='autocomplete') {
@@ -305,6 +319,9 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				html.input ="<div class='jrg-forminput-input'><div name='"+uniqueName+"' jrg-autocomplete ng-change='onchange({})' ng-model='ngModel' vals='valsAutocomplete' placeholder='"+placeholder+"' config='opts' "+customAttrs+" ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
+				}
+				if(attrs.ngBlur) {
+					html.input +="ng-blur='ngBlur()' ";
 				}
 				html.input+="></div></div>";
 			}
@@ -314,6 +331,9 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				html.input ="<select class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})' "+customAttrs+" ng-options='opt.val as opt.name for opt in selectOpts' ";
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
+				}
+				if(attrs.ngBlur) {
+					html.input +="ng-blur='ngBlur()' ";
 				}
 				html.input+=">";
 				if(placeholder && placeholder.length > 0) {
@@ -327,6 +347,9 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				//NOTE: no customAttrs here..		//@todo - add them??
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
+				}
+				if(attrs.ngBlur) {
+					html.input +="ng-blur='ngBlur()' ";
 				}
 				if(attrs.loadMore) {
 					html.input +="load-more='loadMoreWrapper' ";
@@ -347,6 +370,9 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				}
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
+				}
+				if(attrs.ngBlur) {
+					html.input +="ng-blur='ngBlur()' ";
 				}
 				html.input+=">";
 				html.input+="</div>";
