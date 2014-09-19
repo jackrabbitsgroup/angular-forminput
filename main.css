@@ -265,6 +265,9 @@ input:focus.jrg-multiselect-input {
 .jrg-forminput-cont {
   text-align: left;
 }
+.jrg-forminput-char-count {
+  margin-bottom: 3px;
+}
 .jrg-forminput-validation {
   padding-bottom: 9px;
 }

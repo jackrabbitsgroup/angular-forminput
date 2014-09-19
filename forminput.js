@@ -67,6 +67,8 @@ attrs
 	@param {String} [label =''] Text for <label> (defaults to attrs.placeholder if label is not defined)
 	@param {Number} [noLabel] Set to 1 to not show label
 	@param {String} [hint =''] Hint text to go below input
+	@param {String} [charCount] Text to place in character count div (which is between input div and hint div, but exists only if this attribute is defined). Use the special string '$$length' for the length of the input. This attribute is for display purposes only. Intended for use with text and textarea inputs.
+		@example char-count = '$$length / 100 characters' would display as '17 / 100 characters', if the user has typed 17 characters in the input. Known bug: trailing spaces are not counted in the length value. It's as if Angular ignores trailing spaces on the ng-model expression - it doesn't update.
 	
 
 @usage
@@ -223,7 +225,8 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				label: '',
 				input: '',
 				hint: '',
-				validation: ''
+				validation: '',
+				character_count: ''
 			};
 			if(label && !attrs.noLabel) {
 				html.label ="<label>"+label+"</label>";
@@ -234,7 +237,7 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			
 			//copy over attributes
 			var customAttrs ='';		//string of attrs to copy over to input
-			var skipAttrs =['jrgForminput', 'ngModel', 'label', 'type', 'placeholder', 'hint', 'opts', 'name', 'optsDatetime', 'validateDatetime', 'onchangeDatetime', 'checkboxVals', 'ngClick', 'ngBlur'];
+			var skipAttrs =['jrgForminput', 'ngModel', 'label', 'type', 'placeholder', 'hint', 'opts', 'name', 'optsDatetime', 'validateDatetime', 'onchangeDatetime', 'checkboxVals', 'ngClick', 'ngBlur', 'charCount'];
 			angular.forEach(attrs, function (value, key) {
 				if (key.charAt(0) !== '$' && skipAttrs.indexOf(key) === -1) {
 					customAttrs+=attrs.$attr[key];
@@ -332,7 +335,11 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				if(attrs.ngBlur) {
 					html.input +="ng-blur='ngBlur()' ";
 				}
-				html.input+="></select>";
+				html.input+=">";
+				if(placeholder && placeholder.length > 0) {
+					html.input+="<option value='' disabled selected>" + placeholder + "</option>";
+				}
+				html.input+="</select>";
 			}
 			else if(attrs.type =='multi-select') {
 				elementTag ='div';
@@ -371,11 +378,17 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				html.input+="</div>";
 			}
 			
+			//Character Count
+			if(attrs.charCount)
+			{
+				html.character_count = "<div class = 'jrg-forminput-char-count'>" + attrs.charCount.replace('$$length', "{{ngModel.length || '0'}}") + "</div>";
+			}
+			
 			//validation
 			//'track by $id($index)' is required for Angular >= v1.1.4 otherwise will get a 'duplicates in a repeater are not allowed' error; see here for this solution: http://mutablethought.com/2013/04/25/angular-js-ng-repeat-no-longer-allowing-duplicates/
 			html.validation ="<div class='jrg-forminput-validation text-error' ng-repeat='(key, error) in field.$error track by $id($index)' ng-show='error && field.$dirty' class='help-inline'>{{opts1.validationMessages[key]}} <span ng-show='!opts1.validationMessages[key]'>Invalid</span></div>";		//generic "Invalid" error message if message for this key doesn't exist
 			
-			var htmlFull ="<div class='jrg-forminput-cont {{classes.focus}} {{classes.ngValidation}}'><div class='jrg-forminput'>"+html.label+html.input+"</div>"+html.hint+html.validation+"</div>";
+			var htmlFull ="<div class='jrg-forminput-cont {{classes.focus}} {{classes.ngValidation}}'><div class='jrg-forminput'>" + html.label + html.input + "</div>" + html.character_count + html.hint + html.validation + "</div>";
 			
 			//save on attrs for use later
 			attrs.elementTag =elementTag;
