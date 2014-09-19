@@ -23,7 +23,7 @@ config(['$routeProvider', '$locationProvider', '$compileProvider', function($rou
 	var staticPath;
 	// staticPath ='/angular-directives/angular-forminput/';		//local
 	staticPath ='/';		//local (nodejs)
-	// staticPath ='/angular-forminput/';		//gh-pages
+	staticPath ='/angular-forminput/';		//gh-pages
 	var appPathRoute =staticPath;
 	var pagesPath =staticPath+'pages/';
 	
