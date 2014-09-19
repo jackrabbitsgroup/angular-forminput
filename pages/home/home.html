@@ -7,7 +7,7 @@
 	<br />
 	
 	<form class='jrg-forminput-form {{formWideClass}}' name='signupForm' ng-submit='submitForm()'>
-		<div jrg-forminput placeholder='First Name' ng-model='formVals.first_name' opts='opts'></div>
+		<div jrg-forminput placeholder='First Name' ng-model='formVals.first_name' opts='opts' ng-blur='blurIt({})'></div>
 		<div jrg-forminput type='text' placeholder='Last Name' hint='Hint: enter your last name!' ng-model='formVals.last_name' opts=''></div>
 		<div jrg-forminput type='email' placeholder='Email' hint='Enter your email' ng-model='formVals.email' opts='' required></div>
 		<div jrg-forminput type='password' placeholder='Password' ng-model='formVals.password' opts='' required ng-minlength='6'></div>
