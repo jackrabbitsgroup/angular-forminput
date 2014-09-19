@@ -1,5 +1,10 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.1.1
+## Features
+- Added character count support
+- Added basic placeholder support for select inputs
+
 # 1.1.0
 ## Breaking Changes
 - update to Angular v1.3.0-beta.17
