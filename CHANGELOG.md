@@ -1,5 +1,10 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.1.3
+## Features
+- Add ngValidation classes on init
+
+
 # 1.1.2
 ## Features
 - Add ngBlur support
