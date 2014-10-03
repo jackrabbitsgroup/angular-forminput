@@ -1,6 +1,6 @@
 {
   "name": "angular-autocomplete-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     "Luke Madera <luke.madera@gmail.com>"
   ],
@@ -25,11 +25,11 @@
     "lesshat": "latest"
   },
   "homepage": "https://github.com/jackrabbitsgroup/angular-autocomplete",
-  "_release": "1.0.0",
+  "_release": "1.0.1",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.0",
-    "commit": "b054516080611cbe9fd75cd64336e6127b2d2611"
+    "tag": "v1.0.1",
+    "commit": "dc6bf78b36172f25d7c94fed979d5f5903502450"
   },
   "_source": "git://github.com/jackrabbitsgroup/angular-autocomplete.git",
   "_target": "*",

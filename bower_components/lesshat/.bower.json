@@ -1,13 +1,23 @@
 {
   "name": "lesshat",
-  "version": "2.0.9",
-  "main": "./build/lesshat.less",
+  "version": "3.0.2",
+  "main": [
+    "./build/lesshat.less",
+    "./build/lesshat-prefixed.less"
+  ],
+  "ignore": [
+    "mixins",
+    "*.md",
+    "*.json",
+    "LICENCE",
+    ".*.*"
+  ],
   "homepage": "https://github.com/csshat/lesshat",
-  "_release": "2.0.9",
+  "_release": "3.0.2",
   "_resolution": {
     "type": "version",
-    "tag": "v2.0.9",
-    "commit": "6125e28eb06804593750c904e27d9cd4968b2581"
+    "tag": "v3.0.2",
+    "commit": "ee58f199f7a8d787198046036345732ac84f4398"
   },
   "_source": "git://github.com/csshat/lesshat.git",
   "_target": "*",

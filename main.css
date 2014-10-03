@@ -18,6 +18,9 @@ mixins (ones NOT included (directly) in LESSHat)
 */
 /*** CONTAINER ***/
 .flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
@@ -79,8 +82,8 @@ mixins (ones NOT included (directly) in LESSHat)
 	*/
   -webkit-box-pack: center;
   -moz-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   /*
 	-webkit-box-pack: center;
@@ -165,6 +168,9 @@ mixins (ones NOT included (directly) in LESSHat)
   background-color: white;
   border: solid 1px #969696;
   padding: 5px;
+  max-height: 200px;
+  overflow: auto;
+  z-index: 100;
 }
 .jrg-autocomplete-dropdown-val {
   cursor: pointer;
@@ -322,6 +328,9 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 .jrg-forminput-form.wider .jrg-forminput,
 .jrg-forminput-form.widest .jrg-forminput,
 .jrg-forminput-form.wide-icon .jrg-forminput {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
@@ -441,4 +450,7 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 /* end: columns */
 .jrg-forminput-cont.focused {
   background-color: #f0f0f0;
+}
+.jrg-forminput-cont.ng-invalid:not(.focused):not(.ng-pristine) {
+  background-color: #ffebeb;
 }
