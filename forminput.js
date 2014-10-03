@@ -1,4 +1,6 @@
 /**
+NOTE: as of Angular v1.3.0-rc.3, 'ng-maxlength' doesn't validate properly so use 'maxlength' instead!
+
 @todo
 - checkbox - allow true/false values to be specified in scope (rather than just attrs)
 - add specific input type directives to be included here (checkbox, etc.)
