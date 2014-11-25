@@ -1,4 +1,6 @@
 /**
+NOTE: as of Angular v1.3.0-rc.3, 'ng-maxlength' doesn't validate properly so use 'maxlength' instead!
+
 @todo
 - checkbox - allow true/false values to be specified in scope (rather than just attrs)
 - add specific input type directives to be included here (checkbox, etc.)
@@ -271,6 +273,9 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 			var elementTagEvt ='input';		//the tag for the event binding (i.e. focus or blur) may be different
 			if(attrs.type =='text' || attrs.type =='email' || attrs.type =='tel' || attrs.type =='number' || attrs.type =='url') {
 				html.input ="<input class='jrg-forminput-input' name='"+uniqueName+"' ng-model='ngModel' ng-change='onchange({})' type='"+attrs.type+"' placeholder='"+placeholder+"' "+customAttrs+" ";
+				if(attrs.type =='email') {
+					html.input +="ng-pattern='/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z0-9]{2,4}/' ";
+				}
 				if(attrs.ngClick) {
 					html.input +="ng-click='ngClick()' ";
 				}
@@ -445,6 +450,10 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 				var classes =angular.element(element.find(selectorEvt)).attr('class');
 				//only copy over the ng-* classes
 				var classesArr =classes.match(/ng-(\S+)/g);
+				//avoid errors
+				if(!classesArr) {
+					classesArr =[];
+				}
 				classes =classesArr.join(' ');
 				scope.classes.ngValidation =classes;
 			}

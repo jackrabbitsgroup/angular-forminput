@@ -1,5 +1,10 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.1.4
+## Features
+- Add `type=email` `ng-pattern` validation to ensure a '.' is required
+
+
 # 1.1.3
 ## Features
 - Add ngValidation classes on init
