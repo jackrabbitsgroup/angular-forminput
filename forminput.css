@@ -76,9 +76,6 @@ input[type="checkbox"].jrg-forminput-input-checkbox {
 .jrg-forminput-form.wider .jrg-forminput,
 .jrg-forminput-form.widest .jrg-forminput,
 .jrg-forminput-form.wide-icon .jrg-forminput {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
