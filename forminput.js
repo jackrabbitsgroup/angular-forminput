@@ -414,6 +414,21 @@ angular.module('jackrabbitsgroup.angular-forminput', []).directive('jrgForminput
 					scope.classes.focus ='';		//reset
 				});
 			});
+			//Focus inner element on outer element focus
+			angular.element(element).on('click', function(evt)
+			{
+				if(element.find(selectorEvt)[0] && element.find(selectorEvt)[0].focus)
+				{
+					element.find(selectorEvt)[0].focus();
+				}
+			});
+			angular.element(element).on('touch', function(evt)
+			{
+				if(element.find(selectorEvt)[0] && element.find(selectorEvt)[0].focus)
+				{
+					element.find(selectorEvt)[0].focus();
+				}
+			});
 			
 			//copy over classes from input to outer container (for styling - they seem to already be copied over AFTER enter a valid value once, but need them if the initial value is invalid too)
 			//add keyup handler for adding angular validation classes
