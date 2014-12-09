@@ -1,5 +1,9 @@
 Version numbers correspond to `bower.json` version (package.json files is NOT necessarily in sync)
 
+# 1.1.6
+## Bug Fixes
+- Fix reversion bug caused by 1.1.5
+
 # 1.1.5
 ## Features
 - Focus input when input container div clicked
