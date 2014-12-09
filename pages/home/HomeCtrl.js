@@ -73,5 +73,9 @@ angular.module('myApp').controller('HomeCtrl', ['$scope', '$timeout', function($
 			console.log('form invalid');
 		}
 	};
+	
+	$scope.blurIt =function(params) {
+		console.log('blurIt');
+	};
 
 }]);
